@@ -1,6 +1,6 @@
 # pytorch-EDI(event based deblur method)
 
-A simple implementation of the paper "Bringing a Blurry Frame Alive at High Frame-Rate with an Event Camera"(2019) by Pan et al.
+A simple pytorch implementation of the paper "Bringing a Blurry Frame Alive at High Frame-Rate with an Event Camera"(2019) by Pan et al.
 
 [official repository is here](https://github.com/panpanfei/Bringing-a-Blurry-Frame-Alive-at-High-Frame-Rate-with-an-Event-Camera)
 ## requirements
