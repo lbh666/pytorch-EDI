@@ -2,6 +2,7 @@
 
 A simple implementation of the paper "Bringing a Blurry Frame Alive at High Frame-Rate with an Event Camera"(2019) by Pan et al.
 
+[official repository is here](https://github.com/panpanfei/Bringing-a-Blurry-Frame-Alive-at-High-Frame-Rate-with-an-Event-Camera)
 ## requirements
  pytorch
  
@@ -19,7 +20,7 @@ Given raw event data,run  `python process.py` to convert event into event frames
 Run `train.py` to estimate the constant c of event camera.
 
 ## result
-A nice estimate for constant c is about 0.34 specifically for the example data.
+A nice estimate for constant c is about 0.34 specifically for the [example data](https://github.com/XiangZ-0/EVDI).
 
 Visualization of the deblurred result of the example data.
 
