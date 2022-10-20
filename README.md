@@ -24,3 +24,5 @@ A nice estimate for constant c is about 0.34 specifically for the example data.
 Visualization of the deblurred result of the example data.
 
 ![blurred](https://github.com/lbh666/pytorch-EDI/blob/main/blur1.png) ![result](https://github.com/lbh666/pytorch-EDI/blob/main/result.png)
+![blurred](https://github.com/lbh666/pytorch-EDI/blob/main/blur2.png) ![result](https://github.com/lbh666/pytorch-EDI/blob/main/result2.png)
+![](https://github.com/lbh666/pytorch-EDI/blob/main/cube.gif)
