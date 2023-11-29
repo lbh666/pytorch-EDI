@@ -2,7 +2,7 @@
 
 A simple pytorch implementation of the paper "[Bringing a Blurry Frame Alive at High Frame-Rate with an Event Camera](https://openaccess.thecvf.com/content_CVPR_2019/papers/Pan_Bringing_a_Blurry_Frame_Alive_at_High_Frame-Rate_With_an_CVPR_2019_paper.pdf)"(2019) by Pan et al.
 
-[official repository is here](https://github.com/panpanfei/Bringing-a-Blurry-Frame-Alive-at-High-Frame-Rate-with-an-Event-Camera)
+official repository is [here](https://github.com/panpanfei/Bringing-a-Blurry-Frame-Alive-at-High-Frame-Rate-with-an-Event-Camera)
 ## requirements
  pytorch
  
