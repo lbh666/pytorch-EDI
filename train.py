@@ -1,18 +1,8 @@
-from random import randrange
 import numpy as np
 import torch
 import torch.nn as nn
 import cv2 as cv
 import torch.nn.functional as F
-import matplotlib.pyplot as plt
-path = 'processed.npy'
-x = np.load(path, allow_pickle=True).item()
-
-event = x['e1']
-img = x['blur1']
-cv.imwrite('blur1.png', img)
-event = torch.from_numpy(event).unsqueeze(0).cuda()
-img = torch.from_numpy(img).float().unsqueeze(0).unsqueeze(0).cuda()
 
 class sobel_loss(nn.Module):
     def __init__(self) -> None:
@@ -68,6 +58,16 @@ class EDI(nn.Module):
         E = torch.cat([torch.exp(left), torch.exp(right)], dim=1).sum(dim=1, keepdim=True) / self.bins
 
         return img / (E + eps)
+
+# load data
+path = 'processed.npy'
+x = np.load(path, allow_pickle=True).item()
+event = x['e1']
+img = x['blur1']
+cv.imwrite('blur1.png', img)
+event = torch.from_numpy(event).unsqueeze(0).cuda()
+img = torch.from_numpy(img).float().unsqueeze(0).unsqueeze(0).cuda()
+
 
 bins = 12
 net = EDI().cuda()
