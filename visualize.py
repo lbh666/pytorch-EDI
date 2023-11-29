@@ -34,7 +34,8 @@ if __name__ == "__main__":
     for event, img in [(x['e1'], x['blur1']), (x['e2'], x['blur2'])]:
         event = torch.from_numpy(event).unsqueeze(0)
         img = torch.from_numpy(img).float().unsqueeze(0).unsqueeze(0)
-        img = np.zeros_like(img) + 125.
+        # for reconstruction
+        # img = np.zeros_like(img) + 125.
         net = test_EDI()
         
         for i in range(event.shape[1]+1):
