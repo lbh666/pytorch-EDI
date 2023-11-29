@@ -35,7 +35,7 @@ if __name__ == "__main__":
         event = torch.from_numpy(event).unsqueeze(0)
         img = torch.from_numpy(img).float().unsqueeze(0).unsqueeze(0)
         # for reconstruction
-        # img = np.zeros_like(img) + 125.
+        img = np.zeros_like(img) + 125.
         net = test_EDI()
         
         for i in range(event.shape[1]+1):
@@ -47,4 +47,4 @@ if __name__ == "__main__":
             im_list.append(tmp)
             cv.imshow('1', tmp)
             cv.waitKey(10)
-    imageio.mimsave('rec.gif', im_list, 'GIF', duration=0.2)
+    imageio.mimsave('rec.gif', im_list, 'GIF', duration=0.1)
