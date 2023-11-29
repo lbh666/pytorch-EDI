@@ -7,19 +7,23 @@ import torch.nn.functional as F
 import matplotlib.pyplot as plt
 import imageio
 
-class testnet(nn.Module):
-    def __init__(self) -> None:
-        super().__init__()
-        self.c = nn.Parameter(torch.tensor(0.3383), requires_grad=True)
-        
-    def forward(self, event, img,idx = 6):
-        E = []
-        
-        for j in range(event.shape[1]+1):
-            E.append( torch.exp(self.c* ( np.sign(j-idx) * event[:,min(j,idx):max(j,idx),...].sum(dim=1))))
-        E = torch.stack(E,dim=1).sum(dim=1).unsqueeze(1)/(event.shape[1]+1)
-        
-        return img / E
+class test_EDI(nn.Module):
+    def __init__(self, bins=12, c=0.3, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.c = nn.Parameter(torch.tensor(c), requires_grad=True)
+        self.bins = bins
+    
+    def forward(self, img, event, idx=None, eps=1e-8):
+        '''
+        input:
+            x: [B, C, H, W]
+            event: [B, T, H, W]
+        '''
+        left = -torch.cumsum(event[:, :idx].flip(dims=[1]), 1) * self.c
+        right = torch.cumsum(event[:, idx:], 1) * self.c
+        E = torch.cat([torch.exp(left), torch.exp(right)], dim=1).sum(dim=1, keepdim=True) / self.bins
+
+        return img / (E + eps)
 
 
 if __name__ == "__main__":
@@ -30,15 +34,16 @@ if __name__ == "__main__":
     for event, img in [(x['e1'], x['blur1']), (x['e2'], x['blur2'])]:
         event = torch.from_numpy(event).unsqueeze(0)
         img = torch.from_numpy(img).float().unsqueeze(0).unsqueeze(0)
-        net = testnet()
+        img = np.zeros_like(img) + 125.
+        net = test_EDI()
         
         for i in range(event.shape[1]+1):
             with torch.no_grad():
-                y = net(event, img, i)
+                y = net(img, event, i)
             tmp = y[0,0].detach().numpy()
-            tmp = np.clip(tmp,0.,255.)
-            tmp = (tmp - tmp.min()) / (tmp.max() - tmp.min())
+            tmp = np.clip(tmp,0.,255.).astype(np.uint8)
+            # tmp = (tmp - tmp.min()) / (tmp.max() - tmp.min())
             im_list.append(tmp)
             cv.imshow('1', tmp)
             cv.waitKey(10)
-    imageio.mimsave('cube.gif', im_list, 'GIF', duration=0.1)
+    imageio.mimsave('rec.gif', im_list, 'GIF', duration=0.2)

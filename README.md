@@ -24,6 +24,10 @@ A nice estimate for constant c is about 0.34 specifically for the [example data]
 
 Visualization of the deblurred result of the example data.
 
-![blurred](https://github.com/lbh666/pytorch-EDI/blob/main/blur1.png) ![result](https://github.com/lbh666/pytorch-EDI/blob/main/result.png)
-![blurred](https://github.com/lbh666/pytorch-EDI/blob/main/blur2.png) ![result](https://github.com/lbh666/pytorch-EDI/blob/main/result2.png)
-![](https://github.com/lbh666/pytorch-EDI/blob/main/cube.gif)
+![blurred](./blur1.png) ![result](./result.png)
+![blurred](./blur2.png) ![result](./result2.png)
+![gif](./cube.gif)
+
+## Bonus Point
+For event-based reconstruction, we don't have blurred images. Why not simply set the blurred images a white image (125 for range [0, 255]) so that we can directly apply EDI to reconstruction.
+![gif](./rec.gif)
