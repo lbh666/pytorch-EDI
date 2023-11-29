@@ -29,5 +29,5 @@ Visualization of the deblurred result of the example data.
 ![gif](./cube.gif)
 
 ## Bonus Point
-For event-based reconstruction, we don't have blurred images. Why not simply set the blurred images a white image (125 for range [0, 255]) so that we can directly apply EDI to reconstruction.
+For event-based reconstruction, we don't have blurred images. Why not simply set the blurred image a white image (125 for range [0, 255]) so that we can directly apply EDI to reconstruction.
 ![gif](./rec.gif)
